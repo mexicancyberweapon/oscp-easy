@@ -4,11 +4,10 @@
 
 # OSCP Made Easy
 
-> **Warning:** Do not blame me if you fail! I cannot guarantee you passing but this should really help out.
 
-Table of Contents:
 
-- [Documentation](#documentation)
+### Table of Contents:
+
 - [Web](#web)
 - [Linux](#linux)
 - [Windows](#windows)
@@ -26,21 +25,45 @@ This is a culmination of me looking through all of the resources I could find fo
   
   The OSCP exam is structured like this:
 
-  - **3 stand alone machines (each worth 20 points for a 60 point total):**
-      - 20 points per machine
+  - **3 stand alone machines (60 point total):**
+      - 20 points for each of the 3 machines
         
-        - 10 points for initial access
-        -  10 points for privilege escalation
+        -  10 points for low-privilege (local.txt)
+        -  10 points for privilege escalation (proof.txt in /root/ or the Administrator Desktop)
         
-  - **1 Active Directory set with 3 machines (worth 40 points):**
-      - 10 points for machine 1
-      - 10 points for machine 2
-      - 20 points for machine 3
+  - **1 Active Directory set with 3 machines (40 point total):**
+      - 10 points for machine 1 (client)
+      - 10 points for machine 2 (client)
+      - 20 points for machine 3 (domain controller)
+   
+  Possible scenarios to pass the exam (70/100):
+  - 40 points AD + 3 local.txt flags
+  - 40 points AD + 2 local.txt flags + 1 proof.txt flag
+  - 20 points AD + 3 local.txt flags + 2 proof.txt flags
+  - 10 points AD + 3 fully completed stand alone machines
 
-### Forbidden Tools:
-  The OSCP does not allow the use of MetaSploit
+### Exam Restrictions:
+  - Spoofing (IP, ARP, DNS, NBNS, etc.)
+  - Commercial tools (Metasploit Pro, Burp Pro, etc.)
+  - Automatic exploitation tools (db_autopwn, browser_autopwn, SQLmap, SQLninja, etc.)
+  - Mass vulnerability scanners (Nessus, NeXpose, OpenVAS, Canvas, Core Impact, SAINT, etc.)
+  - AI Chatbots (OffSec KAI, ChatGPT, YouChat, etc.)
+  - Features in other tools that utilize either forbideen or restricted exam limitations.
 
-## Documentation
+### Metasploit Restrictions:
+  The usage of Metasploit and the Meterpreter payload are restricted during the exam. You may only use Metasploit modules (**Auxiliary, Exploit, and Post**) or the Meterpreter payload against only **one** single target machine of your choice. Once you have selected your one single target machine, you cannot use Metasploit modules (Auxiliary, Exploit, or Post) or the Meterpreter payload against any other machines.
+
+  Metasploit/Meterpreter should not be used to test vulnerabilities on multiple machines before selecting your one target machine (this includes the use of **check**). You may use Metasploit/Meterpreter as many times as you would like against your one target machine.
+
+  If you decide to use Metasploit or Meterpreter on a specific target and the attack fails, then you may not attempt to use it on a second target. In other words, the use of Metasploit and Meterpreter becomes locked in as soon as you decide to use either one of them.
+  
+  Metasploit **cannot** be used for **pivoting**, because it would thereby be used on more than one target.
+
+  However, you can use all of the following against all of the target machines:
+  - multi handler (aka exploit/multi/handler)
+  - msfvenom
+
+### Documentation:
 
 ## Web
 
