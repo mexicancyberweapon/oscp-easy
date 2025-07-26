@@ -63,8 +63,10 @@ This is a culmination of me looking through all of the resources I could find fo
   - multi handler (aka exploit/multi/handler)
   - msfvenom
 
-### Documentation:
+### Documentation
 
+## Enumeration:
+  
 ## Web
 
 ## Linux
@@ -72,6 +74,66 @@ This is a culmination of me looking through all of the resources I could find fo
 ## Windows
 
 ## Active Directory
+
+### Enumeration:
+
+Enumerate Users
+
+```
+net user
+net user /domain
+net user $domain_user /domain
+```
+
+Enumerate Groups
+
+```
+net group /domain
+
+# Includes domain users that are part of local administrators group
+net localgroup administrators
+```
+
+PowerView
+
+```
+# Import PowerView
+PS> Import-Module .\PowerView.ps1
+
+# Get info about current domain
+PS> Get-NetDomain
+
+# List all attributes of the user objects
+PS> Get-NetUser
+
+# Lists all usernames in the domain
+PS> Get-NetUser | select cn
+
+# Lists all groups in the domain
+PS> Get-NetGroup | select cn
+
+# List members of Domain Admins group
+PS> Get-NetGroupMember -GroupName "Domain Admins"
+
+# List all computers in domain
+PS> Get-NetComputer
+
+# Enumerate logged-on users
+# NB: only lists users logged on to target if we have local administrator privileges on target
+PS> Get-NetLoggedon -ComputerName $hostname
+
+# Enumerate active user sessions on servers e.g. file servers or domain controllers
+PS> Get-NetSession -ComputerName $hostname
+
+# Enumerate SPNs
+PS> Get-NetUser -SPN | select serviceprincipalname
+```
+
+### Attacking:
+
+### Lateral Movement:
+
+### Examples:
 
 ## Labs
 
